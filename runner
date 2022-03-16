@@ -1,0 +1,15 @@
+#!/bin/bash
+
+source ./.env
+
+case $1 in
+"build")
+  docker build -t siraken/example-php-app:1.0 .
+;;
+"deploy")
+  gcloud builds submit --tag gcr.io/$PROJECT_ID/phpexample
+;;
+*)
+  echo Unexpected command.
+;;
+esac
